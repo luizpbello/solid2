@@ -1,16 +1,12 @@
-
 export class User {
-    
-  private id: string;
+  public id?: number;
 
   public name: string;
   public email: string;
   public password: string;
+  public confirmPassword?: string
 
-  constructor(props: Omit<User, "id">, id?: string) {
+  constructor(props:User, id?: number) {
     Object.assign(this, props);
-
-    
-    
   }
 }
