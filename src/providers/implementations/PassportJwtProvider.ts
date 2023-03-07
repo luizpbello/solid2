@@ -28,9 +28,9 @@ export class PassportJwtProvider implements IPassportProvider {
             throw new Error('Erro de jwt')
         }
 
-        const token = jwt.sign(payload.toJSON(), this.secretKey, {
-            expiresIn:'1h'
-        })
-        return token
+        // const token = jwt.sign(payload.toJSON(), this.secretKey, {
+        //     expiresIn:'1h'
+        // })
+        // return token
     }
 }
