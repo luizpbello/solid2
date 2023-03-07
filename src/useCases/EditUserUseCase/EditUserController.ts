@@ -15,7 +15,6 @@ export default class EditUserController {
 
     const data = { name, email, password } as User;
 
-    console.log(id, data)
     try {
       this.validationProvider.existsOrError(name, "Nome não informado!");
       this.validationProvider.existsOrError(email, "Email não informado!");
