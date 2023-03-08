@@ -31,6 +31,6 @@ export class PassportJwtProvider implements IPassportProvider {
         // const token = jwt.sign(payload.toJSON(), this.secretKey, {
         //     expiresIn:'1h'
         // })
-        // return token
+        return 'ok'
     }
 }
