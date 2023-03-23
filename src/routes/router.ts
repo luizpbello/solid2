@@ -3,6 +3,7 @@ import { createUserController } from "../useCases/CreateUser";
 import { deleteUserController } from "../useCases/DeleteUserUseCase";
 import { editUserController } from "../useCases/EditUserUseCase";
 import { getUserController } from "../useCases/GetUsers";
+import { signinController } from "../useCases/SigninUseCase";
 
 const router = Router();
 
@@ -20,5 +21,9 @@ router.delete('/users/:id',(request,response) => {
 
 router.put('/users/:id', (request,response) => {
   return editUserController.handle(request, response)
+})
+
+router.post('/signin',(request, response) => {
+  return signinController.handle(request,response)
 })
 export { router };

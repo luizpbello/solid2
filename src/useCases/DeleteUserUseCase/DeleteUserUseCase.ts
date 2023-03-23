@@ -1,7 +1,7 @@
 import { IUserRepository } from "../../repositories/IUserRepository";
 import { IDeleteUserRequestDTO } from "./DeleteUserDTO";
 
-export class DeleteUserUseCAse {
+export class DeleteUserUseCase {
   constructor(private userRepository: IUserRepository) {}
 
   async execute(data:IDeleteUserRequestDTO): Promise<void> {

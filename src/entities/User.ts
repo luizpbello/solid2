@@ -6,6 +6,7 @@ export class User {
   public password: string;
   public confirmPassword?: string
 
+
   constructor(props:User, id?: number) {
     Object.assign(this, props);
   }

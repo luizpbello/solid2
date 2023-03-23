@@ -22,7 +22,7 @@ export default class EditUserController {
       this.validationProvider.existsOrError(password, "Senha não informada!");
    
       const user = await this.editUserUseCase.execute(id, data);
-      return response.status(200).json(user);
+      return response.status(200).json({message:'Usuário alterado com sucesso!'});
     } catch (error) {
       return response
         .status(404)

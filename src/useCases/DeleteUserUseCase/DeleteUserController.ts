@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { DeleteUserUseCAse } from "./DeleteUserUseCase";
+import { DeleteUserUseCase } from "./DeleteUserUseCase";
 
 export class DeleteUserController {
-  constructor(private deleteUserUseCAse: DeleteUserUseCAse) {}
+  constructor(private deleteUserUseCase: DeleteUserUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params   
@@ -10,9 +10,9 @@ export class DeleteUserController {
     
     try {
      
-      await this.deleteUserUseCAse.execute({id:+id});
+      await this.deleteUserUseCase.execute({id:+id});
 
-      return response.status(204).send();
+      return response.status(204).send({message: 'Usuário removido com sucesso!'});
     } catch (error) {
       return response.status(404).json({ 
         message: 'Usuário não existe' || "Unxpected error.",
