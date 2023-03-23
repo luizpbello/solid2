@@ -1,6 +1,5 @@
-import { User } from "../entities/User";
-
+import {JwtPayload} from 'jsonwebtoken'
 export interface IPassportProvider {
-    validateUser(email:string, password:string):Promise<any>;
-    generateToken(payload: User):Promise<string>;
+  generateToken(payload: JwtPayload, expiresIn: string): string;
+  validateToken(token: string): JwtPayload;
 }

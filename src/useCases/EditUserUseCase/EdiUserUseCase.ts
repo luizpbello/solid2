@@ -17,7 +17,6 @@ export default class EditUserUseCase {
       password: data.password ?? userExists.password,
     } as User;
 
-    console.log('here', userToUpdate)
     const newUser = await this.userRepository.update(id, userToUpdate);
     return newUser;
   }

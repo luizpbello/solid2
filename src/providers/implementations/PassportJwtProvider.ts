@@ -1,36 +1,28 @@
-import { User } from '../../entities/User'
-import { IUserRepository } from '../../repositories/IUserRepository'
-import {IPassportProvider} from '../IPassportProvider'
-import jwt from 'jsonwebtoken'
+import { IPassportProvider } from "../IPassportProvider";
+import jwt from "jsonwebtoken";
+import {JwtPayload} from 'jsonwebtoken'
+import * as dotenv from 'dotenv';
+
+dotenv.config()
+
 
 export class PassportJwtProvider implements IPassportProvider {
-    constructor(
-        private readonly userRepository: IUserRepository,
-        private readonly secretKey = process.env.JWT_SECRET_KEY
+  constructor(
+    private readonly secretKey = process.env.JWT_SECRET_KEY
+  ) {}
 
-    ){}
-   async validateUser(email: string, password: string): Promise<any> {
-        const user = await this.userRepository.findByEmail(email)
+  generateToken(payload: JwtPayload, expiresIn: string): string {
+    const token = jwt.sign(payload, this.secretKey, {expiresIn})
+    return token
+  }
 
-        if(!user){
-            throw new Error('Email ou senha inválidos.')
-        }
-
-        if(user.password === password){
-            return await this.generateToken(user)
-        }
-
-        throw new Error('Usuário ou senha inválidos.')
+  validateToken(token: string): JwtPayload {
+    try {
+      const payload = jwt.verify(token, this.secretKey) as JwtPayload;
+      return payload
+    } catch (error) {
+      throw new Error('Invalid Token')
     }
-
-   async generateToken(payload: User): Promise<string> {
-        if(!this.secretKey){
-            throw new Error('Erro de jwt')
-        }
-
-        // const token = jwt.sign(payload.toJSON(), this.secretKey, {
-        //     expiresIn:'1h'
-        // })
-        return 'ok'
-    }
+  }
+ 
 }
